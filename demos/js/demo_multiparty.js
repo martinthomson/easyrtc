@@ -683,6 +683,8 @@ function appInit() {
     handleWindowResize(); //initial call of the top-down layout manager
     
     // easyRTC.setVideoBandwidth(20);
+    easyRTC.idp = 'www.roach.at';
+    easyRTC.idpProtocol = 'bogus';
     easyRTC.setLoggedInListener(callEverybodyElse);
     easyRTC.initManaged("roomDemo", "box0", ["box1", "box2", "box3"], loginSuccess);
     easyRTC.setDataListener(messageListener);

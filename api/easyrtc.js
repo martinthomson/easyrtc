@@ -1635,7 +1635,7 @@ easyRTC.connect = function(applicationName, successCallback, errorCallback) {
         };
 
 
-        pc.createOffer(setLocalAndSendMessage, null, mediaConstraints);
+        pc.createOffer(setLocalAndSendMessage, callFailureCB, mediaConstraints);
     };
 
 
@@ -1811,6 +1811,12 @@ easyRTC.connect = function(applicationName, successCallback, errorCallback) {
             //
             if (easyRTC.dataEnabled && typeof pc.createDataChannel === 'undefined') {
                 easyRTC.dataEnabled = false;
+            }
+
+
+            // Enable IdP if configured
+            if (easyRTC.idp && typeof pc.setIdentityProvider != 'undefined') {
+                pc.setIdentityProvider(easyRTC.idp, easyRTC.idpProtocol);
             }
 
 

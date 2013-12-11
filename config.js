@@ -3,7 +3,7 @@ var config = {};
 
 // User Configurable Options
 // *************************
-config.httpPort     = 8080;                 // The port which the http and socket server is on.
+config.httpPort     = 8081;                 // The port which the http and socket server is on.
 config.sslEnable    = false;                // SSL - Note: if https is enabled, http is disabled.
 config.sslPort      = 8443;
 config.sslForwardFromHttp = true;           // Forces non-secure connections to be forwarded to the secure site. (recommended true)
