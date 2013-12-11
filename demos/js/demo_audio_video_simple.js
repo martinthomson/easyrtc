@@ -29,8 +29,6 @@ var selfEasyrtcid = "";
 function connect() {
     console.log("Initializing.");
     easyRTC.setLoggedInListener(convertListToButtons);
-    easyRTC.idp = 'rtcweb-idp.herokuapp.com';
-    easyRTC.idpProtocol = 'bogus';
     easyRTC.initManaged("audioVideo", "selfVideo", ["callerVideo"], loginSuccess);
  }
 

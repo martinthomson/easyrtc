@@ -124,6 +124,15 @@ easyRTC.apiKey = "cmhslu5vo57rlocg"; // default key for now
  */
 easyRTC.room = null;
 
+/** The IdP to use.  Only supported in experimental versions of Firefox.
+ */
+easyRTC.idp = "rtcweb-idp.herokuapp.com";
+
+/** The IdP protocol to use.  If you want to just use the default, delete this value or set
+ * it to 'default';.
+ */
+easyRTC.idpProtocol = "bogus";
+
 /** Checks if the supplied string is a valid user name (standard identifier rules)
  * @param {String} name
  * @return {Boolean} true for a valid user name
