@@ -1,5 +1,5 @@
 /** @class
- *@version 0.9.0 
+ *@version 0.9.0
  *<p>
  * Provides client side support for the easyRTC framework.
  * Please see the easyrtc_client_api.md and easyrtc_client_tutorial.md
@@ -44,14 +44,14 @@ var easyRTC = {};
  * @type Dictionary.
  */
 easyRTC.errCodes = {
-    BAD_NAME: "BAD_NAME", // a user name wasn't of the desired form 
+    BAD_NAME: "BAD_NAME", // a user name wasn't of the desired form
     DEVELOPER_ERR: "DEVELOPER_ERR", // the developer using the easyRTC library made a mistake
     SYSTEM_ERR: "SYSTEM_ERR", // probably an error related to the network
     CONNECT_ERR: "CONNECT_ERR", // error occured when trying to create a connection
     MEDIA_ERR: "MEDIA_ERR", // unable to get the local media
     MEDIA_WARNING: "MEDIA_WARNING", // didn't get the desired resolution
     INTERNAL_ERR: "INTERNAL_ERR",
-    SIP_ERR: "SIP_ERR"  //something went wrong with a sip session 
+    SIP_ERR: "SIP_ERR"  //something went wrong with a sip session
 };
 
 easyRTC.apiVersion = "0.8.0";
@@ -72,7 +72,7 @@ easyRTC.disconnecting = false;
 easyRTC.localStream = null;
 
 /** @private */
-easyRTC.videoFeatures = true; // default video 
+easyRTC.videoFeatures = true; // default video
 
 /** @private */
 easyRTC.isMozilla = navigator.mozGetUserMedia ? true : false;
@@ -106,12 +106,12 @@ easyRTC.filterOutTurn = false;
 
 easyRTC.sipUA = null;  // JSSIP user agent if SIP is supported.
 
-/** The height of the local media stream video in pixels. This field is set an indeterminate period 
+/** The height of the local media stream video in pixels. This field is set an indeterminate period
  * of time after easyRTC.initMediaSource succeeds.
  */
 easyRTC.nativeVideoHeight = 0;
 
-/** The width of the local media stream video in pixels. This field is set an indeterminate period 
+/** The width of the local media stream video in pixels. This field is set an indeterminate period
  * of time after easyRTC.initMediaSource succeeds.
  */
 easyRTC.nativeVideoWidth = 0;
@@ -197,9 +197,9 @@ easyRTC.setScreenCapture = function() {
     };
 };
 
-/** Set the API Key. The API key identifies the owner of the application. 
+/** Set the API Key. The API key identifies the owner of the application.
  *  The API key has no meaning for the Open Source server.
- * @param {String} key 
+ * @param {String} key
  * @example
  *      easyRTC.setApiKey('cmhslu5vo57rlocg');
  */
@@ -222,7 +222,7 @@ easyRTC.setApplicationName = function(name) {
 
 
 /** Setup the JsSIP User agent.
- * 
+ *
  * @param {type} connectConfig is a dictionary that contains the following fields: { ws_servers, uri, password }
  * @returns {undefined}
  */
@@ -235,13 +235,13 @@ easyRTC.getSipConnectionCount = function() {
     return 0;
 }
 
-/** Enable or disable logging to the console. 
+/** Enable or disable logging to the console.
  * Note: if you want to control the printing of debug messages, override the
  *    easyRTC.debugPrinter variable with a function that takes a message string as it's argument.
  *    This is exactly what easyRTC.enableDebug does when it's enable argument is true.
  * @param {Boolean} enable - true to turn on debugging, false to turn off debugging. Default is false.
  * @example
- *    easyRTC.enableDebug(true);  
+ *    easyRTC.enableDebug(true);
  */
 easyRTC.enableDebug = function(enable) {
     if (enable) {
@@ -303,7 +303,7 @@ easyRTC.createRTCPeerConnection = function(pc_config, optionalStuff) {
 };
 
 //
-// 
+//
 //
 if (easyRTC.isMozilla) {
     easyRTC.datachannelConstraints = {};
@@ -357,10 +357,10 @@ easyRTC.updateConfigurationInfo = function() {
 //        sharingAudio: true if audio is being shared
 //        sharingVideo: true if video is being shared
 //        cancelled: temporarily true if a connection was cancelled by the peer asking to initiate it.
-//        candidatesToSend: SDP candidates temporarily queued 
+//        candidatesToSend: SDP candidates temporarily queued
 //        pc: RTCPeerConnection
 //        mediaStream: mediaStream
-//	  function callSuccessCB(string) - see the easyRTC.call documentation.
+//        function callSuccessCB(string) - see the easyRTC.call documentation.
 //        function callFailureCB(string) - see the easyRTC.call documentation.
 //        function wasAcceptedCB(boolean,string) - see the easyRTC.call documentation.
 //     }
@@ -369,14 +369,14 @@ easyRTC.updateConfigurationInfo = function() {
 easyRTC.peerConns = {};
 
 //
-// a map keeping track of whom we've requested a call with so we don't try to 
+// a map keeping track of whom we've requested a call with so we don't try to
 // call them a second time before they've responded.
 //
 /** @private */
 easyRTC.acceptancePending = {};
 
 
-/* 
+/*
  * the maximum length of the appDefinedFields. This is defined on the
  * server side as well, so changing it here alone is insufficient.
  */
@@ -418,9 +418,9 @@ easyRTC.callCancelled = function(easyrtcid) {
 
 /** Provide a set of application defined fields that will be part of this instances
  * configuration information. This data will get sent to other peers via the websocket
- * path. 
+ * path.
  * @param {type} fields just be JSON serializable to a length of not more than 128 bytes.
- * @example 
+ * @example
  *   easyRTC.setAppDefinedFields( { favorite_alien:'Mr Spock'});
  *   easyRTC.setLoggedInListener( function(list) {
  *      for( var i in list ) {
@@ -453,7 +453,7 @@ easyRTC.showError = function(messageCode, message) {
     easyRTC.onError({errCode: messageCode, errText: message});
 };
 
-/** @private 
+/** @private
  * @param errorObject
  */
 easyRTC.onError = function(errorObject) {
@@ -536,7 +536,7 @@ easyRTC.videoBandwidthString = "b=AS:50"; // default video band width is 50kbps
 //     mediaStream - a media stream object.
 // The video object in Chrome expects a URL.
 //
-/** @private 
+/** @private
  * @param mediaStream */
 easyRTC.createObjectURL = function(mediaStream) {
     if (window.URL && window.URL.createObjectURL) {
@@ -615,7 +615,7 @@ easyRTC.setDataChannelOpenListener = function(listener) {
  * @param {Function} listener
  * @example
  *    easyRTC.setDataChannelCloseListener( function(easyrtcid) {
- *            ("No longer connected to " + easyRTC.idToName(easyrtcid));       
+ *            ("No longer connected to " + easyRTC.idToName(easyrtcid));
  *    });
  */
 easyRTC.setDataChannelCloseListener = function(listener) {
@@ -693,14 +693,14 @@ easyRTC.getLocalStreamAsUrl = function() {
  *  It returns a stream that can be used as an argument to easyRTC.setVideoObjectSrc.
  * @return {MediaStream}
  * @example
- *    easyRTC.setVideoObjectSrc( document.getElementById("myVideo"), easyRTC.getLocalStream());    
+ *    easyRTC.setVideoObjectSrc( document.getElementById("myVideo"), easyRTC.getLocalStream());
  */
 easyRTC.getLocalStream = function() {
     return easyRTC.localStream;
 };
 
 /**
- * Sends a easyrtcCmd command to the server, rather than another client. 
+ * Sends a easyrtcCmd command to the server, rather than another client.
  * @param {string} instruction
  * @param {object} data
  * @returns {undefined}
@@ -740,7 +740,7 @@ easyRTC.sendServerMessage = function(instruction, data) {
 };
 
 /** Clears the media stream on a video object.
- * 
+ *
  * @param {type} element the video object.
  * @returns {undefined}
  */
@@ -760,15 +760,15 @@ easyRTC.clearMediaStream = function(element) {
  *  Chrome uses the src attribute and expects a URL, while firefox
  *  uses the mozSrcObject and expects a stream. This procedure hides
  *  that from you.
- *  If the media stream is from a local webcam, you may want to add the 
+ *  If the media stream is from a local webcam, you may want to add the
  *  easyRTCMirror class to the video object so it looks like a proper mirror.
  *  The easyRTCMirror class is defined in easyrtc.css, which is automatically added
  *  when you add the easyrtc.js file to an HTML file.
- *  @param {DOMObject} videoObject an HTML5 video object 
+ *  @param {DOMObject} videoObject an HTML5 video object
  *  @param {MediaStream} stream a media stream as returned by easyRTC.getLocalStream or your stream acceptor.
  * @example
- *    easyRTC.setVideoObjectSrc( document.getElementById("myVideo"), easyRTC.getLocalStream());    
- *     
+ *    easyRTC.setVideoObjectSrc( document.getElementById("myVideo"), easyRTC.getLocalStream());
+ *
  */
 easyRTC.setVideoObjectSrc = function(videoObject, stream) {
     if (stream && stream != "") {
@@ -819,18 +819,18 @@ easyRTC.formatError = function(x) {
  *  Failure could be caused a browser that didn't support webrtc, or by the user
  * not granting permission.
  * If you are going to call easyRTC.enableAudio or easyRTC.enableVideo, you need to do it before
- * calling easyRTC.initMediaSource. 
+ * calling easyRTC.initMediaSource.
  * @param {Function} successCallback - will be called when the media source is ready.
  * @param {Function} errorCallback - is called with a message string if the attempt to get media failed.
  * @example
  *       easyRTC.initMediaSource(
- *          function() { 
- *              easyRTC.setVideoObjectSrc( document.getElementById("mirrorVideo"), easyRTC.getLocalStream()); 
+ *          function() {
+ *              easyRTC.setVideoObjectSrc( document.getElementById("mirrorVideo"), easyRTC.getLocalStream());
  *          },
  *          function() {
  *               easyRTC.showError("no-media", "Unable to get local media");
  *          });
- *          
+ *
  */
 easyRTC.initMediaSource = function(successCallback, errorCallback) {
 
@@ -860,7 +860,8 @@ easyRTC.initMediaSource = function(successCallback, errorCallback) {
 
 
     var mode = {'audio': (easyRTC.audioEnabled ? true : false),
-        'video': ((easyRTC.videoEnabled) ? (easyRTC.videoFeatures) : false)};
+        'video': ((easyRTC.videoEnabled) ? (easyRTC.videoFeatures) : false),
+        'peerIdentity': easyRTC.peerIdentity};
 
     /** @private
      * @param {Stream} stream
@@ -870,10 +871,10 @@ easyRTC.initMediaSource = function(successCallback, errorCallback) {
             easyRTC.debugPrinter("getUserMedia success callback entered");
         }
 //     console.log("getusermedia succeeded");
-// the below commented out checks were for Chrome. However, Mozilla nightly started 
-// implementing the getAudioTracks method as well, except their implementation appears to 
+// the below commented out checks were for Chrome. However, Mozilla nightly started
+// implementing the getAudioTracks method as well, except their implementation appears to
 // be asychronous, the audioTracks.length are zero initially and filled later.
-// 
+//
 //        if (easyRTC.audioEnabled && stream.getAudioTracks) {
 //            var audioTracks = stream.getAudioTracks();
 //            if (!audioTracks || audioTracks.length === 0) {
@@ -971,7 +972,7 @@ easyRTC.initMediaSource = function(successCallback, errorCallback) {
 //
 // getUserMedia usually fails the first time I call it. I suspect it's a page loading
 // issue. So I'm going to try adding a 1 second delay to allow things to settle down first.
-// 
+//
         setTimeout(function() {
             try {
                 getUserMedia(mode, onUserMediaSuccess, onUserMediaError);
@@ -1016,7 +1017,7 @@ easyRTC.setAcceptChecker = function(acceptCheck) {
  * @example
  *  easyRTC.setStreamAcceptor(function(easyrtcid, stream) {
  *     document.getElementById('callerName').innerHTML = easyRTC.idToName(easyrtcid);
- *     easyRTC.setVideoObjectSrc( document.getElementById("callerVideo"), stream); 
+ *     easyRTC.setVideoObjectSrc( document.getElementById("callerVideo"), stream);
  *  });
  */
 easyRTC.setStreamAcceptor = function(acceptor) {
@@ -1037,10 +1038,10 @@ easyRTC.setOnError = function(errListener) {
 
 
 /**
- * Sets the callCancelled callback. This will be called when a remote user 
+ * Sets the callCancelled callback. This will be called when a remote user
  * initiates a call to you, but does a "hangup" before you have a chance to get his video stream.
  * @param {Function} callCancelled takes an easyrtcid as an argument and a boolean that indicates whether
- *  the call was explicitly cancelled remotely (true), or actually accepted by the user attempting a call to 
+ *  the call was explicitly cancelled remotely (true), or actually accepted by the user attempting a call to
  *  the same party.
  * @example
  *     easyRTC.setCallCancelled( function(easyrtcid, explicitlyCancelled) {
@@ -1057,7 +1058,7 @@ easyRTC.setCallCancelled = function(callCancelled) {
 };
 
 /**  Sets a callback to receive notification of a media stream closing. The usual
- *  use of this is to clear the source of your video object so you aren't left with 
+ *  use of this is to clear the source of your video object so you aren't left with
  *  the last frame of the video displayed on it.
  *  @param {Function} onStreamClosed takes an easyrtcid as it's first parameter.
  *  @example
@@ -1097,11 +1098,11 @@ easyRTC.setVideoBandwidth = function(kbitsPerSecond) {
  * @param {Function} listener has the signature (easyrtcid, data)
  * @example
  *     easyRTC.setPeerListener( function(easyrtcid, data) {
- *         ("From " + easyRTC.idToName(easyrtcid) + 
+ *         ("From " + easyRTC.idToName(easyrtcid) +
  *             " sent the follow data " + JSON.stringify(data));
  *     });
- *     
- *     
+ *
+ *
  */
 easyRTC.setPeerListener = function(listener) {
     easyRTC.receivePeerCB = listener;
@@ -1112,11 +1113,11 @@ easyRTC.setPeerListener = function(listener) {
  * @param {Function} listener has the signature (easyrtcid, data)
  * @example
  *     easyRTC.setDataListener( function(easyrtcid, data) {
- *         ("From " + easyRTC.idToName(easyrtcid) + 
+ *         ("From " + easyRTC.idToName(easyrtcid) +
  *             " sent the follow data " + JSON.stringify(data));
  *     });
- *     
- *     
+ *
+ *
  */
 easyRTC.setDataListener = easyRTC.setPeerListener;
 
@@ -1126,7 +1127,7 @@ easyRTC.setDataListener = easyRTC.setPeerListener;
  * @example
  *     easyRTC.setPeerListener( function(data) {
  *         ("From Server sent the follow data " + JSON.stringify(data));
- *     });     
+ *     });
  */
 easyRTC.setServerListener = function(listener) {
     easyRTC.receiveServerCB = listener;
@@ -1152,14 +1153,14 @@ easyRTC.setSocketUrl = function(socketUrl) {
     easyRTC.serverPath = socketUrl;
 };
 
-/** 
+/**
  * Sets the user name associated with the connection.
  * @param {String} userName must obey standard identifier conventions.
  * @returns {Boolean} true if the call succeeded, false if the username was invalid.
  * @example
  *    if ( !easyRTC.setUserName("JohnSmith") ) {
  *        alert("bad user name);
- *    
+ *
  */
 easyRTC.setUserName = function(userName) {
     if (easyRTC.isNameValid(userName)) {
@@ -1248,7 +1249,7 @@ easyRTC.haveTracks = function(easyrtcid, checkAudio) {
 
 /** Determines if a particular peer2peer connection has an audio track.
  * @param easyrtcid - the id of the other caller in the connection. Null for local media stream.
- * @return {boolean} 
+ * @return {boolean}
  */
 easyRTC.haveAudioTrack = function(easyrtcid) {
     return easyRTC.haveTracks(easyrtcid, true);
@@ -1327,18 +1328,18 @@ easyRTC.connect = function(applicationName, successCallback, errorCallback) {
 
         easyRTC.hangupAll();
         easyRTC.loggingOut = true;
-        // 
+        //
         // The hangupAll may try to send configuration information back to the server.
-        // Collecting that information is asynchronous, we don't actually close the 
+        // Collecting that information is asynchronous, we don't actually close the
         // connection until it's had a chance to be sent. We allocate 100ms for collecting
         // the info, so 250ms should be sufficient for the disconnecting.
-        // 
+        //
         setTimeout(function() {
             if (easyRTC.webSocketConnected) {
                 try {
                     easyRTC.webSocket.disconnect();
                 } catch (e) {
-                    // we don't really care if this fails. 
+                    // we don't really care if this fails.
                 }
                 ;
                 easyRTC.closedChannel = easyRTC.webSocket;
@@ -1390,8 +1391,8 @@ easyRTC.connect = function(applicationName, successCallback, errorCallback) {
 
     /**
      *Sends data to another user using previously established data channel. This method will
-     * fail if no data channel has been established yet. Unlike the easyRTC.sendWS method, 
-     * you can't send a dictionary, convert dictionaries to strings using JSON.stringify first. 
+     * fail if no data channel has been established yet. Unlike the easyRTC.sendWS method,
+     * you can't send a dictionary, convert dictionaries to strings using JSON.stringify first.
      * What datatypes you can send, and how large a datatype depends on your browser.
      * @param {String} destUser (an easyrtcid)
      * @param {Object} data - an object which can be JSON'ed.
@@ -1422,7 +1423,7 @@ easyRTC.connect = function(applicationName, successCallback, errorCallback) {
     /** Sends data to another user using websockets.
      * @param {String} destUser (an easyrtcid)
      * @param {String} data - an object which can be JSON'ed.
-     * @example 
+     * @example
      *    easyRTC.sendDataWS(someEasyrtcid, {room:499, bldgNum:'asd'});
      */
     easyRTC.sendDataWS = function(destUser, data) {
@@ -1448,7 +1449,7 @@ easyRTC.connect = function(applicationName, successCallback, errorCallback) {
     /** Sends data to another user. This method uses datachannels if one has been set up, or websockets otherwise.
      * @param {String} destUser (an easyrtcid)
      * @param {String} data - an object which can be JSON'ed.
-     * @example 
+     * @example
      *    easyRTC.sendData(someEasyrtcid, {room:499, bldgNum:'asd'});
      */
     easyRTC.sendData = function(destUser, data) {
@@ -1478,7 +1479,7 @@ easyRTC.connect = function(applicationName, successCallback, errorCallback) {
      *  @return {String} one of the following values: easyRTC.NOT_CONNECTED, easyRTC.BECOMING_CONNECTED, easyRTC.IS_CONNECTED
      *  @example
      *     if( easyRTC.getConnectStatus(otherEasyrtcid) == easyRTC.NOT_CONNECTED ) {
-     *         easyRTC.connect(otherEasyrtcid, 
+     *         easyRTC.connect(otherEasyrtcid,
      *                  function() { console.log("success"); },
      *                  function() { console.log("failure"); });
      *     }
@@ -1529,7 +1530,7 @@ easyRTC.connect = function(applicationName, successCallback, errorCallback) {
      * @param {Function} callFailureCB (errMessage) - is called if there was a system error interfering with the call.
      * @param {Function} wasAcceptedCB (wasAccepted:boolean,otherUser:string) - is called when a call is accepted or rejected by another party. It can be left null.
      * @example
-     *    easyRTC.call( otherEasyrtcid, 
+     *    easyRTC.call( otherEasyrtcid,
      *        function(easyrtcid, mediaType) {
      *           console.log("Got mediatype " + mediaType + " from " + easyRTC.idToName(easyrtcid);
      *        },
@@ -1543,7 +1544,7 @@ easyRTC.connect = function(applicationName, successCallback, errorCallback) {
      *            else {
      *                console.log("call rejected" + easyRTC.idToName(easyrtcid));
      *            }
-     *        });       
+     *        });
      */
     easyRTC.call = function(otherUser, callSuccessCB, callFailureCB, wasAcceptedCB) {
         if (easyRTC.debugPrinter) {
@@ -1575,7 +1576,7 @@ easyRTC.connect = function(applicationName, successCallback, errorCallback) {
 
         if (easyRTC.sipUA) {
             //
-            // The standard sip address starts with "sip:". 
+            // The standard sip address starts with "sip:".
             //
             for (i in easyRTC.sipProtocols) {
                 if (otherUser.indexOf(i) === 0) {
@@ -1586,7 +1587,7 @@ easyRTC.connect = function(applicationName, successCallback, errorCallback) {
         }
 
         //
-        // If B calls A, and then A calls B before accepting, then A should treat the attempt to 
+        // If B calls A, and then A calls B before accepting, then A should treat the attempt to
         // call B as a positive offer to B's offer.
         //
         if (easyRTC.offersPending[otherUser]) {
@@ -1692,7 +1693,7 @@ easyRTC.connect = function(applicationName, successCallback, errorCallback) {
     }
 
     /**
-     * Collects statistics on a particular connection. 
+     * Collects statistics on a particular connection.
      * @param {string} otherUser - the easyrtcid the connection is attached to.
      * @param {function} collector - a function that will be invoked with a map of statistics values
      * @param {DOMObject} fieldsOfInterest - a map listing just the statistics to be reported. Can be null in which case all statics are reported.
@@ -1768,7 +1769,7 @@ easyRTC.connect = function(applicationName, successCallback, errorCallback) {
     };
 
     /**
-     * This method adds a new stream to an existing connection. 
+     * This method adds a new stream to an existing connection.
      * @param {string} otherUser - the easyrtcid of the other party in the connection.
      * @param {MediaStream} stream - the other local media stream.
      */
@@ -1811,6 +1812,12 @@ easyRTC.connect = function(applicationName, successCallback, errorCallback) {
             //
             if (easyRTC.dataEnabled && typeof pc.createDataChannel === 'undefined') {
                 easyRTC.dataEnabled = false;
+            }
+
+
+            if (easyRTC.idp && pc.setIdentityProvider) {
+                pc.setIdentityProvider(easyRTC.idp, easyRTC.idpProtocol,
+                                       easyRTC.idpUsername);
             }
 
 
@@ -2283,10 +2290,10 @@ easyRTC.connect = function(applicationName, successCallback, errorCallback) {
                 }
             };
 
-            // 
+            //
             // There is a very rare case of two callers sending each other offers
             // before receiving the others offer. In such a case, the caller with the
-            // greater valued easyrtcid will delete its pending call information and do a 
+            // greater valued easyrtcid will delete its pending call information and do a
             // simple answer to the other caller's offer.
             //
             if (easyRTC.acceptancePending[caller] && caller < easyRTC.myEasyrtcid) {
@@ -2321,7 +2328,7 @@ easyRTC.connect = function(applicationName, successCallback, errorCallback) {
             //   {url:"turn:username@host", credential:"password"}
             //   or {url:"turn:host", username:"username", credential:"password"}
             //   if it's the former, we split it to look like the latter.
-            // 
+            //
 
             easyRTC.pc_config = {iceServers: []};
             for (var i in msg.iceConfig.iceServers) {
@@ -2344,7 +2351,7 @@ easyRTC.connect = function(applicationName, successCallback, errorCallback) {
                 else { // is stun server entry
                     fixedItem = item;
                 }
-                easyRTC.pc_config.iceServers.push(fixedItem); 
+                easyRTC.pc_config.iceServers.push(fixedItem);
             }
 
 
@@ -2670,7 +2677,7 @@ easyRTC.connect = function(applicationName, successCallback, errorCallback) {
     function updateConfiguration() {
         var newConfig = easyRTC.collectConfigurationInfo();
         //
-        // we need to give the getStats calls a chance to fish out the data. 
+        // we need to give the getStats calls a chance to fish out the data.
         // The longest I've seen it take is 5 milliseconds so 100 should be overkill.
         //
         var sendDeltas = function() {
@@ -2706,7 +2713,7 @@ easyRTC.autoAddCloseButtons = true;
 
 /** By default, the initManaged routine sticks a "close" button on top of each caller
  * video object that it manages. Call this function (before calling initManaged) to disable that particular feature.
- * 
+ *
  */
 easyRTC.dontAddCloseButtons = function() {
     easyRTC.autoAddCloseButtons = false;
@@ -2716,7 +2723,7 @@ easyRTC.dontAddCloseButtons = function() {
  * the video object identified by monitorVideoId, assign remote video streams to
  * the video objects identified by videoIds, and then call onReady. One of it's
  * side effects is to add hangup buttons to the remote video objects, buttons
- * that only appear when you hover over them with the mouse cursor. This method will also add the 
+ * that only appear when you hover over them with the mouse cursor. This method will also add the
  * easyRTCMirror class to the monitor video object so that it behaves like a mirror.
  *  @param {String} applicationName - name of the application.
  *  @param {String} monitorVideoId - the id of the video object used for monitoring the local stream.
@@ -2724,7 +2731,7 @@ easyRTC.dontAddCloseButtons = function() {
  *  @param {Function} onReady - a callback function used on success.
  *  @param {Function} onFailure - a callbackfunction used on failure (failed to get local media or a connection of the signaling server).
  *  @example
- *     easyRTC.initManaged('multiChat', 'selfVideo', ['remote1', 'remote2', 'remote3'], 
+ *     easyRTC.initManaged('multiChat', 'selfVideo', ['remote1', 'remote2', 'remote3'],
  *              function() {
  *                  console.log("successfully connected.");
  *              });
@@ -2738,7 +2745,7 @@ easyRTC.initManaged = function(applicationName, monitorVideoId, videoIds, onRead
         videoIds = [];
     }
 
-    // verify that video ids were not typos.    
+    // verify that video ids were not typos.
     if (monitorVideoId && !document.getElementById(monitorVideoId)) {
         easyRTC.showError(easyRTC.errCodes.DEVELOPER_ERR, "The monitor video id passed to initManaged was bad, saw " + monitorVideoId);
         return;
@@ -2760,7 +2767,7 @@ easyRTC.initManaged = function(applicationName, monitorVideoId, videoIds, onRead
     /** Sets an event handler that gets called when the local media stream is
      *  created or not. Can only be called after calling easyRTC.initManaged.
      *  @param {Function} gotMediaCB has the signature function(gotMedia, why)
-     *  @example 
+     *  @example
      *     easyRTC.setGotMedia( function(gotMediaCB, why) {
      *         if( gotMedia ) {
      *             console.log("Got the requested user media");
@@ -2778,7 +2785,7 @@ easyRTC.initManaged = function(applicationName, monitorVideoId, videoIds, onRead
     /** Sets an event handler that gets called when a connection to the signalling
      * server has or has not been made. Can only be called after calling easyRTC.initManaged.
      * @param {Function} gotConnectionCB has the signature (gotConnection, why)
-     * @example 
+     * @example
      *    easyRTC.setGotConnection( function(gotConnection, why) {
      *        if( gotConnection ) {
      *            console.log("Successfully connected to signalling server");
@@ -2798,9 +2805,9 @@ easyRTC.initManaged = function(applicationName, monitorVideoId, videoIds, onRead
      * The slot argument is the index into the array of video ids.
      * @param {Function} cb has the signature function(easyrtcid, slot) {}
      * @example
-     *   easyRTC.setOnCall( function(easyrtcid, slot) { 
+     *   easyRTC.setOnCall( function(easyrtcid, slot) {
      *      console.log("call with " + easyrtcid + "established");
-     *   }); 
+     *   });
      */
     easyRTC.setOnCall = function(cb) {
         onCall = cb;
@@ -2814,9 +2821,9 @@ easyRTC.initManaged = function(applicationName, monitorVideoId, videoIds, onRead
      * it's count will reflect the number of connections before the hangup started.
      * @param {Function} cb has the signature function(easyrtcid, slot) {}
      * @example
-     *   easyRTC.setOnHangup( function(easyrtcid, slot) { 
+     *   easyRTC.setOnHangup( function(easyrtcid, slot) {
      *      console.log("call with " + easyrtcid + "ended");
-     *   }); 
+     *   });
      */
     easyRTC.setOnHangup = function(cb) {
         onHangup = cb;
@@ -2865,7 +2872,7 @@ easyRTC.initManaged = function(applicationName, monitorVideoId, videoIds, onRead
 
     //
     // Only accept incoming calls if we have a free video object to display
-    // them in. 
+    // them in.
     //
     easyRTC.setAcceptChecker(function(caller, helper) {
         for (var i = 0; i < numPEOPLE; i++) {
@@ -2995,6 +3002,12 @@ easyRTC.initManaged = function(applicationName, monitorVideoId, videoIds, onRead
                     if (onFailure) {
                         onFailure(why);
                     }
+                }
+
+                // prevent double-connect
+                if (easyRTC.myEasyrtcid) {
+                    nextInitializationStep();
+                    return;
                 }
                 easyRTC.connect(applicationName, nextInitializationStep, connectError);
             },
@@ -3168,4 +3181,3 @@ if (navigator.mozGetUserMedia) {
 //
 // This is the end of the polyfill adapter.js
 //
-
